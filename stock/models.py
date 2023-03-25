@@ -11,6 +11,10 @@ class UpdateCreate(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=25)
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
 
@@ -48,6 +52,10 @@ class Purchases(UpdateCreate):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     price_total = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
 
+    class Meta:
+        verbose_name = "Purchase"
+        verbose_name_plural = "Purchases"
+
     def __str__(self):
         return f"{self.product} - {self.quantity}"
 
@@ -58,6 +66,10 @@ class Sales(UpdateCreate):
     quantity = models.PositiveSmallIntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     price_total = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
+
+    class Meta:
+        verbose_name = "Sale"
+        verbose_name_plural = "Sales"
 
     def __str__(self):
         return f"{self.product} - {self.quantity}"
