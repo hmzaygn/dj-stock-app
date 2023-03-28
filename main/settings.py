@@ -44,12 +44,12 @@ INSTALLED_APPS = [
     'account',
     'stock',
 
-    # drf
+    # 3rdParty
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
     'drf_yasg',
-
+    'django_filters',
 ]
 
 MIDDLEWARE = [
