@@ -18,8 +18,6 @@ class CategorySerializer(serializers.ModelSerializer):
             "id",
             "name",
             "product_count",
-            "createds",
-            "updated",
         )
 
     def get_product_count(self, obj):
@@ -63,9 +61,21 @@ class BrandSerializer(serializers.ModelSerializer):
             "id",
             "name",
             "image",
-            "createds",
-            "updated",
         )
+
+class FirmSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Firm
+        fields = (
+            "id",
+            "name",
+            "phone",
+            "image",
+            "address",
+        )
+
+
 
 
 
