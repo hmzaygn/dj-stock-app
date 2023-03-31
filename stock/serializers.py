@@ -25,17 +25,24 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
 
+    category = serializers.StringRelatedField()
+    brand = serializers.StringRelatedField()
+
     class Meta:
         model = Product
         fields = (
             "id",
             "name",
             "category",
+            "category_id",
             "brand",
+            "brand_id",
             "stock",
             "createds",
             "updated",
         )
+
+        read_only_fields = ("stock",)
 
 class CategoryProductSerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True)

@@ -15,6 +15,7 @@ from .serializers import (
     CategoryProductSerializer,
     BrandSerializer,
     FirmSerializer,
+    ProductSerializer,
 )
 
 class CategoryView(viewsets.ModelViewSet):
@@ -45,6 +46,13 @@ class FirmView(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ["name"]
 
+class ProductView(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [DjangoModelPermissions]
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    filterset_fields = ["category", "brand"]
+    search_fields = ["name"]
 
 
 
