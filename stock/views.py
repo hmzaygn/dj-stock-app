@@ -13,6 +13,7 @@ from .models import (
 from .serializers import (
     CategorySerializer,
     CategoryProductSerializer,
+    BrandSerializer,
 )
 
 class CategoryView(viewsets.ModelViewSet):
@@ -29,7 +30,12 @@ class CategoryView(viewsets.ModelViewSet):
             return CategoryProductSerializer
         return super().get_serializer_class()
 
-
+class BrandView(viewsets.ModelViewSet):
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
+    permission_classes = [DjangoModelPermissions]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name"]
 
 
 
