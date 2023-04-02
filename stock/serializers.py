@@ -95,8 +95,8 @@ class PurchasesSerializer(serializers.ModelSerializer):
     brand_id = serializers.IntegerField()
     product_id = serializers.IntegerField()
     category = serializers.SerializerMethodField()
-    createds_time_hour = serializers.SerializerMethodField()
-    updated_time_hour = serializers.SerializerMethodField()
+    createds_date_time = serializers.SerializerMethodField()
+    updated_date_time = serializers.SerializerMethodField()
 
     class Meta:
         model = Purchases
@@ -114,21 +114,57 @@ class PurchasesSerializer(serializers.ModelSerializer):
             "quantity",
             "price",
             "price_total",
-            "createds_time_hour",
-            "updated_time_hour",
+            "createds_date_time",
+            "updated_date_time",
         )
 
     def get_category(self, obj):
         product = Product.objects.get(id=obj.product_id)
         return Category.objects.get(id=product.category_id).name
 
-    def get_createds_time_hour(self, obj):
+    def get_createds_date_time(self, obj):
         return datetime.datetime.strftime(obj.createds, "%d.%m.%y %H:%M")
     
-    def get_updated_time_hour(self, obj):
+    def get_updated_date_time(self, obj):
         return datetime.datetime.strftime(obj.createds, "%d.%m.%y %H:%M")
 
+class SalesSerializer(serializers.ModelSerializer):
 
+    user = serializers.StringRelatedField()
+    brand = serializers.StringRelatedField()
+    product = serializers.StringRelatedField()
+    brand_id = serializers.IntegerField()
+    product_id = serializers.IntegerField()
+    category = serializers.SerializerMethodField()
+    createds_date_time = serializers.SerializerMethodField()
+    updated_date_time = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Sales
+        fields = (
+            "id",
+            "user",
+            "user_id",
+            "category",
+            "brand",
+            "brand_id",
+            "product",
+            "product_id",
+            "quantity",
+            "price",
+            "price_total",
+            "createds_date_time",
+            "updated_date_time",
+        )
+
+    def get_category(self, obj):
+        return obj.product.category.name
+
+    def get_createds_date_time(self, obj):
+        return datetime.datetime.strftime(obj.createds, "%d.%m.%y %H:%M")
+    
+    def get_updated_date_time(self, obj):
+        return datetime.datetime.strftime(obj.createds, "%d.%m.%y %H:%M")
 
 
 
