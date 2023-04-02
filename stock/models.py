@@ -49,8 +49,8 @@ class Purchases(UpdateCreate):
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, related_name="b_purchases")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="purchase")
     quantity = models.PositiveSmallIntegerField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    price_total = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price_total = models.DecimalField(max_digits=20, decimal_places=2, blank=True)
 
     class Meta:
         verbose_name = "Purchase"
@@ -64,8 +64,8 @@ class Sales(UpdateCreate):
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, related_name="b_sales")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="sale")
     quantity = models.PositiveSmallIntegerField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    price_total = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price_total = models.DecimalField(max_digits=20, decimal_places=2, blank=True)
 
     class Meta:
         verbose_name = "Sale"
