@@ -114,6 +114,7 @@ class PurchasesSerializer(serializers.ModelSerializer):
             "quantity",
             "price",
             "price_total",
+            "createds",
             "createds_date_time",
             "updated_date_time",
         )
@@ -153,6 +154,7 @@ class SalesSerializer(serializers.ModelSerializer):
             "quantity",
             "price",
             "price_total",
+            "createds",
             "createds_date_time",
             "updated_date_time",
         )
